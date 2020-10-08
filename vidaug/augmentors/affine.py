@@ -73,7 +73,7 @@ class Rotate(object):
     def __call__(self, clip):
         angle = self.degrees
         if isinstance(clip[0], np.ndarray):
-            rotated = [scipy.ndimage.interpolation.rotate(img, angle) for img in clip]
+            rotated = [scipy.ndimage.interpolation.rotate(img, angle, reshape=False) for img in clip]
         elif isinstance(clip[0], PIL.Image.Image):
             rotated = [img.rotate(angle) for img in clip]
         else:
