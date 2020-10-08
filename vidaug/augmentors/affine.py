@@ -58,6 +58,29 @@ class RandomRotate(object):
 
         return rotated
 
+class Rotate(object):
+    """
+    Rotate video by an angle within given boundsi.
+
+    Args:
+        degrees (int): A value that represents the amount of degrees the
+        image should be rotated.
+    """
+
+    def __init__(self, degrees):
+        self.degrees = degrees
+
+    def __call__(self, clip):
+        angle = degrees
+        if isinstance(clip[0], np.ndarray):
+            rotated = [scipy.ndimage.interpolation.rotate(img, angle) for img in clip]
+        elif isinstance(clip[0], PIL.Image.Image):
+            rotated = [img.rotate(angle) for img in clip]
+        else:
+            raise TypeError('Expected numpy.ndarray or PIL.Image' +
+                            'but got list of {0}'.format(type(clip[0])))
+
+        return rotated
 
 class RandomResize(object):
     """
