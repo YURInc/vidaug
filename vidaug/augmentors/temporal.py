@@ -130,10 +130,7 @@ class Downsample(object):
         self.ratio = ratio
 
     def __call__(self, clip):
-        nb_return_frame = np.floor(self.ratio * len(clip))
-        print("nb_return_frame:", nb_return_frame)
         nb_return_frame = int(np.floor(self.ratio * len(clip)))
-        print("nb_return_frame as int:", nb_return_frame)
         return_ind = [int(i) for i in np.linspace(1, len(clip), num=nb_return_frame)]
 
         return [clip[i-1] for i in return_ind]
@@ -153,10 +150,7 @@ class Upsample(object):
         self.ratio = ratio
 
     def __call__(self, clip):
-        nb_return_frame = np.floor(self.ratio * len(clip))
-        print("nb_return_frame:", nb_return_frame)
         nb_return_frame = int(np.floor(self.ratio * len(clip)))
-        print("nb_return_frame as int:", nb_return_frame)
         return_ind = [int(i) for i in np.linspace(1, len(clip), num=nb_return_frame)]
 
         return [clip[i-1] for i in return_ind]
